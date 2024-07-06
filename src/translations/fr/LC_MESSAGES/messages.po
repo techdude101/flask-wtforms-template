@@ -1,0 +1,37 @@
+# French translations for PROJECT.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-07-06 08:17+0100\n"
+"PO-Revision-Date: 2024-07-06 07:49+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.15.0\n"
+
+#: routes/hw.py:16 templates/hw.html:3
+msgid "hello_world"
+msgstr "Bonjour le monde"
+
+#: routes/log_level.py:19 routes/log_level.py:31 routes/log_level.py:43
+#: routes/log_level.py:55 routes/log_level.py:67
+msgid "log level"
+msgstr "Niveau du journal des événements"
+
+#: templates/base.html:18
+msgid "home"
+msgstr "Maison"
+
+#: templates/hw.html:4
+msgid "centre_island"
+msgstr "îlot central"
+

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1> Sensor: {{ sensor_info.sensor_name }} </h1>
+  <form method="POST">
+    {{ form.csrf_token }}
+    {{ form.sensor_name.label }}
+    {{ form.sensor_name }}
+    {{ form.temperature.label }}
+    {{ form.temperature }}
+    {{ form.humidity.label }}
+    {{ form.humidity }}
+    {{ form.submit }}
+  </form>
+{% endblock %}
