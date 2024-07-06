@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1> Sensor: {{ sensor_info.sensor_name }} </h1>
+  <h1> {{ _('sensor_title') }} {{ sensor_info.sensor_name }} </h1>
   <form method="POST" class="w-25 sensor-form">
     {{ form.csrf_token }}
-    {{ form.sensor_name.label(class="form-label") }}
+    {{ form.sensor_name.label(class="form-label", text=_("sensor_name_placeholder")) }}
     {{ form.sensor_name(class="form-control") }}
     <div class="sensor-container">
       <div>
@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="button-group">
-      {{ form.submit(class="button-highlight") }}
+      {{ form.submit(class="button-highlight", value=_("submit_button_text")) }}
     </div>
   </form>
 {% endblock %}

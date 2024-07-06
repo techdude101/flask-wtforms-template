@@ -4,6 +4,7 @@ from wtforms.validators import DataRequired
 
 
 class DeviceInfoForm(FlaskForm):
-    device_name = StringField("Device Name", validators=[DataRequired()])
-    description = StringField("Description")
-    submit = SubmitField("Save")
+    device_name = StringField("device_name_placeholder",
+                              validators=[DataRequired()])
+    description = StringField("description_placeholder")
+    submit = SubmitField('submit_button_text')

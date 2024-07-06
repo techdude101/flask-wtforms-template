@@ -1,16 +1,19 @@
 """Main Flask application"""
 
 import argparse
+import decimal
 import os
 import sys
 import socket
 import logging
 import logging.config
 import textwrap
+import locale
 from flask import Flask, request, session, g, render_template
 from flask_babel import Babel
 from models.device_info_form import DeviceInfoForm
 from models.sensor_info_form import SensorInfoForm
+from flask_babel import _, format_decimal
 
 # Routes
 from routes.hw import hw_route
@@ -76,8 +79,9 @@ def create_app():
     flask_app.config['SECRET_KEY'] = "my super secret key"
     flask_app.register_blueprint(hw_route)
     flask_app.register_blueprint(log_level_route)
-    Babel(flask_app, locale_selector=get_locale,
-          timezone_selector=get_timezone)
+    flask_app.babel = Babel(
+        flask_app, locale_selector=get_locale, timezone_selector=get_timezone
+    )
 
     return flask_app
 
@@ -98,6 +102,7 @@ def hello_world():
 @app.route("/device", methods=["GET", "POST"])
 def device():
     device_info_form = DeviceInfoForm(data=device_info)
+    device_info_form.submit.value = _('submit_button_text')
 
     if device_info_form.validate_on_submit():
         device_info["device_name"] = device_info_form.device_name.data
@@ -113,12 +118,23 @@ def device():
 
 @app.route("/sensor", methods=["GET", "POST"])
 def sensor():
+    locale.setlocale(locale.LC_ALL, get_locale())
+    app.logger.debug("Locale: %s", get_locale())
+
     sensor_info_form = SensorInfoForm(data=sensor_info)
+
+    app.logger.debug("Formatted temp = %s", sensor_info_form.temperature.data)
 
     if sensor_info_form.validate_on_submit():
         sensor_info["sensor_name"] = sensor_info_form.sensor_name.data
-        sensor_info["temperature"] = sensor_info_form.temperature.data
+        sensor_info["temperature"] = locale.atof(
+            sensor_info_form.temperature.data, decimal.Decimal
+        )
+        app.logger.debug("Updated temperature = %s",
+                         sensor_info["temperature"])
         sensor_info["humidity"] = sensor_info_form.humidity.data
+    sensor_info_form.temperature.data = format_decimal(
+        sensor_info["temperature"])
 
     return render_template("sensor_info_form.html",
                            sensor_info=sensor_info,
@@ -138,7 +154,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "-l",
         "--log-level",
-        default="ERROR",
+        default="DEBUG",
         help=textwrap.dedent(
             """\
                         CRITICAL, ERROR, WARNING, INFO or DEBUG

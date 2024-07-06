@@ -1,12 +1,13 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, DecimalField, IntegerField, SubmitField
+from wtforms import StringField, IntegerField, SubmitField
 from wtforms.validators import DataRequired
 
 
 class SensorInfoForm(FlaskForm):
-    sensor_name = StringField("Sensor Name", validators=[DataRequired()])
-    temperature = DecimalField("Temperature (°C)",
-                               validators=[DataRequired()],
-                               places=1)
-    humidity = IntegerField("Humidity (%)", validators=[DataRequired()])
-    submit = SubmitField("Save")
+    sensor_name = StringField('sensor_name_placeholder',
+                              validators=[DataRequired()])
+    temperature = StringField("temperature_placeholder",
+                              validators=[DataRequired()])
+    humidity = IntegerField('humidity_placeholder',
+                            validators=[DataRequired()])
+    submit = SubmitField('submit_button_text')

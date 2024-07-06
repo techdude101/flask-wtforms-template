@@ -21,6 +21,10 @@ a:focus {
   text-decoration: underline;
 }
 
+.nav-top {
+  background-color: var(--colour-secondary);
+}
+
 .sensor-form { 
   margin: 0 auto;
 }
@@ -45,9 +49,10 @@ a:focus {
 }
 
 .temperature {
-  width: 5ch;
+  min-width: 3ch;
+  max-width: 5ch;
   font-size: 2rem;
-  text-align: right;
+  text-align: center;
 }
 
 .temperature-unit {
