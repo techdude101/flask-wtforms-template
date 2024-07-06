@@ -2,12 +2,14 @@
 {% block content %}
   <h1> Device: {{ device_info.device_name }} </h1>
   <p>{{ device_info.description }}</p>
-  <form method="POST">
+  <form method="POST" class="w-25 device-form">
     {{ form.csrf_token }}
-    {{ form.device_name.label }}
-    {{ form.device_name }}
-    {{ form.description.label }}
-    {{ form.description }}
-    {{ form.submit }}
+    {{ form.device_name.label(class="form-label") }}
+    {{ form.device_name(class="form-control") }}
+    {{ form.description.label(class="form-label") }}
+    {{ form.description(class="form-control") }}
+    <div class="button-group">
+      {{ form.submit(class="button-highlight") }}
+    </div>
   </form>
 {% endblock %}

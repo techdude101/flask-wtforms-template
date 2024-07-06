@@ -43,9 +43,9 @@ device_info = {
 }
 
 sensor_info = {
-    "sensor_name": "abc123",
-    "temperature": -99.0,
-    "humidity": 199
+    "sensor_name": "DHT22",
+    "temperature": -98.7,
+    "humidity": 100
 }
 
 

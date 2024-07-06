@@ -1,14 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
   <h1> Sensor: {{ sensor_info.sensor_name }} </h1>
-  <form method="POST">
+  <form method="POST" class="w-25 sensor-form">
     {{ form.csrf_token }}
-    {{ form.sensor_name.label }}
-    {{ form.sensor_name }}
-    {{ form.temperature.label }}
-    {{ form.temperature }}
-    {{ form.humidity.label }}
-    {{ form.humidity }}
-    {{ form.submit }}
+    {{ form.sensor_name.label(class="form-label") }}
+    {{ form.sensor_name(class="form-control") }}
+    <div class="sensor-container">
+      <div>
+        {{ form.temperature(class="temperature") }}
+        <span class="temperature-unit">°C</span>
+      </div>
+      <div>
+        {{ form.humidity(class="humidity") }}
+        <span>%</span>
+      </div>
+    </div>
+    <div class="button-group">
+      {{ form.submit(class="button-highlight") }}
+    </div>
   </form>
 {% endblock %}
